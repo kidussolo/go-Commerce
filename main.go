@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/kidussolo/gocrud/app"
 	"github.com/kidussolo/gocrud/models"
 )
 
@@ -13,4 +14,6 @@ func main() {
 
 	// Add data to db
 	models.DB.Create(&models.Item{Name: "iphone", Price: 1000.00})
+
+	app.Start()
 }
