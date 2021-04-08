@@ -1,9 +1,11 @@
 package controllers
 
 import (
-	"fmt"
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
+
+	"github.com/kidussolo/gocrud/models"
 )
 
 func Wellcome(res http.ResponseWriter, req *http.Request) {
@@ -16,6 +18,8 @@ func NotifyNotFound(res http.ResponseWriter, req *http.Request) {
 
 func AddItem(res http.ResponseWriter, req *http.Request) {
 	b, _ := ioutil.ReadAll(req.Body)
-
-	fmt.Println(b)
+	var item models.Item
+	json.Unmarshal(b, &item)
+	models.DB.Create(&item)
+	res.Write([]byte("Item created Successfully"))
 }

@@ -13,7 +13,7 @@ func main() {
 	models.DB.AutoMigrate(&models.Item{})
 
 	// Add data to db
-	models.DB.Create(&models.Item{Name: "iphone", Price: 1000.00})
+	// models.DB.Create(&models.Item{Name: "iphone", Price: 1000.00})
 
 	app.Start()
 }
