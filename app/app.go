@@ -14,6 +14,8 @@ func Start() {
 
 	// Add route and controllers
 	m.Post(baseUrl+"/items", controllers.AddItem)
+	m.Get(baseUrl+"/welcome", controllers.Wellcome)
+	m.NotFound(controllers.NotifyNotFound)
 
 	// Run server on port
 	m.RunOnAddr(port)
