@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -22,4 +23,16 @@ func AddItem(res http.ResponseWriter, req *http.Request) {
 	json.Unmarshal(b, &item)
 	models.DB.Create(&item)
 	res.Write([]byte("Item created Successfully"))
+}
+
+func GetItem(res http.ResponseWriter, req *http.Request) {
+	var items []models.Item
+	models.DB.Find(&items)
+	fmt.Println(items)
+	v, err := json.Marshal(items)
+	if err != nil {
+		panic(err)
+	}
+	res.Header().Add("Content-Type", "application/json")
+	res.Write(v)
 }
