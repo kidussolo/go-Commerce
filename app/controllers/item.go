@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 
@@ -28,7 +27,6 @@ func AddItem(res http.ResponseWriter, req *http.Request) {
 func GetItem(res http.ResponseWriter, req *http.Request) {
 	var items []models.Item
 	models.DB.Find(&items)
-	fmt.Println(items)
 	v, err := json.Marshal(items)
 	if err != nil {
 		panic(err)
